@@ -14,6 +14,7 @@ public class LoginPageAction {
 	private String login_obj = "button[class*='Login__CTAButton']";
 	private String google_obj = "button[class*='GoogleSignIn']";
 	private String apple_obj = "a[class*='AppleSignIn']";
+	private String invalid_obj = "p[class*='Toast__StyledText']";
 	
 	public LoginPageAction(WebDriver driver) {
 		this.driver = driver;
@@ -23,7 +24,8 @@ public class LoginPageAction {
 	By Pas=By.cssSelector(pass_obj);
 	By Login = By.cssSelector(login_obj);
 	By goo = By.cssSelector(google_obj);
-	By app = By.cssSelector("a[class*='AppleSignIn']");
+	By app = By.cssSelector("apple_obj");
+	By error1 = By.cssSelector("invalid_obj");
 	
 	public void writeEmailId(String userinput) {
 		driver.findElement(Email).sendKeys(userinput);
@@ -44,6 +46,10 @@ public class LoginPageAction {
 	
 	public void appleLogin() {
 		driver.findElement(app).sendKeys(Keys.RETURN);
+	}
+	
+	public String errorMessage() {
+		return driver.findElement(error1).getText();
 	}
 	
 }
